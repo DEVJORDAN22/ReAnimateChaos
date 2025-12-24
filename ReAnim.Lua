@@ -1,5 +1,15 @@
 local plr = game.Players.LocalPlayer
 
+local function TPHat(Hat)
+    while true do
+        task.wait()
+        local Handle = Hat:FindFirstChild("Handle")
+        if Handle then
+            Handle.CFrame = plr.Character.HumanoidRootPart.CFrame
+        end
+    end
+end
+
 local function ReAnim()
     replicatesignal(plr.ConnectDiedSignalBackend)
     task.wait(game.Players.RespawnTime + 0.1)
@@ -14,10 +24,7 @@ local function ReAnim()
     game.Workspace.CurrentCamera.CFrame = CFrame.new(0, 100, 0)
     for i, v in pairs(plr.Character:GetChildren()) do
         if v:IsA("Hat") then
-            local Bodyposition = Instance.new("BodyPosition", v.Handle)
-            Bodyposition.Position = Vector3.new(0, 100, 0)
-            Bodyposition.MaxForce = Vector3.new(400000, 400000, 400000)
-            Bodyposition.P = 90000
+            coroutine.wrap(TPHat)(v)
         end
     end
 end
