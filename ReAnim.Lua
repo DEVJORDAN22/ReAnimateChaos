@@ -2,7 +2,7 @@ local plr = game.Players.LocalPlayer
 
 local function ReAnim()
     replicatesignal(plr.ConnectDiedSignalBackend)
-    task.wait(Players.RespawnTime + 0.1)
+    task.wait(game.Players.RespawnTime + 0.1)
 	local Gyro = Instance.new("BodyGyro", plr.Character.HumanoidRootPart)
 	Gyro.CFrame = CFrame.new(0, 0, 0, 0, 1, -0, 0, 0, -1, 0, 0, -0)
 	Gyro.D = 500
