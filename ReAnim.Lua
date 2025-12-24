@@ -7,6 +7,7 @@ local function ReAnim()
 	Gyro.P = 90000
 	Gyro.MaxTorque = Vector3.new(400000, 400000, 400000)
 	plr.Character.HumanoidRootPart.CFrame = CFrame.new(0, -497.67, 0)
+    wait()
 	replicatesignal(plr.ConnectDiedSignalBackend)
 	replicatesignal(plr.Character.Humanoid.ServerBreakJoints)
     game.Workspace.CurrentCamera.CameraMode = Enum.CameraMode.Scriptable
