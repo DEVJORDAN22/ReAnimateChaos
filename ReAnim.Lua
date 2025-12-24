@@ -1,14 +1,14 @@
 local plr = game.Players.LocalPlayer
 
 local function ReAnim()
+    replicatesignal(plr.ConnectDiedSignalBackend)
+    task.wait(Players.RespawnTime + 0.1)
 	local Gyro = Instance.new("BodyGyro", plr.Character.HumanoidRootPart)
 	Gyro.CFrame = CFrame.new(0, 0, 0, 0, 1, -0, 0, 0, -1, 0, 0, -0)
 	Gyro.D = 500
 	Gyro.P = 90000
 	Gyro.MaxTorque = Vector3.new(400000, 400000, 400000)
 	plr.Character.HumanoidRootPart.CFrame = CFrame.new(0, -497.67, 0)
-    wait()
-	replicatesignal(plr.ConnectDiedSignalBackend)
 	replicatesignal(plr.Character.Humanoid.ServerBreakJoints)
     game.Workspace.CurrentCamera.CameraMode = Enum.CameraMode.Scriptable
     game.Workspace.CurrentCamera.CFrame = CFrame.new(0, 100, 0)
