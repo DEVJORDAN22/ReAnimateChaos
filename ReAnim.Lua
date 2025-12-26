@@ -106,7 +106,7 @@ local function ReAnim()
 		print(v.Name)
         if v:IsA("Accessory") then
 			print("Found accessory: "..v.Name)
-			replicatesignal(v.Handle.ServerBreakJoints)
+			v.Handle:BreakJoints()
             local Attachment = v.Handle:FindFirstChildOfClass("Attachment")
             CreateFakeHat(v)
         end
