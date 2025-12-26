@@ -89,6 +89,9 @@ local function ReAnim()
 		end
 	end
 	FakePlr.PrimaryPart = FakePlr:FindFirstChild("HumanoidRootPart")
+	FakePlr.Parent = workspace
+	FakePlr.Name = "FakePlr"
+	plr.Character.Parent = FakePlr
     plr.Character.HumanoidRootPart.Anchored = false
 	--CreateAlign(plr.Character.HumanoidRootPart, plr.Character.FakeHRP)
 	local BP = Instance.new("BodyPosition", plr.Character.HumanoidRootPart)
