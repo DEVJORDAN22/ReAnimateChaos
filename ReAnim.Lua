@@ -1,7 +1,7 @@
 local rs = game:GetService("RunService")
 local plr = game.Players.LocalPlayer
 
-local HRPCF = CFrame.new(0, 100, 0)
+local HRPCF = CFrame.new(0, 25, 0)
 local FakeHRP = nil
 
 local function CreateAlign(Part1, Part2) 
@@ -66,7 +66,7 @@ local function ReAnim()
 	Gyro.P = 90000
 	Gyro.MaxTorque = Vector3.new(400000, 400000, 400000)
     plr.Character.Humanoid:ChangeState(Enum.HumanoidStateType.Physics)
-	plr.Character.HumanoidRootPart.CFrame = CFrame.new(0, 0, 0)
+	plr.Character.HumanoidRootPart.CFrame = CFrame.new(0, 25, 0)
     wait(0.1)
 	FakeHRP = plr.Character.HumanoidRootPart:Clone()
 	FakeHRP.Name = "FakeHRP"
@@ -118,3 +118,4 @@ local function ReAnim()
 end
 
 ReAnim()
+
