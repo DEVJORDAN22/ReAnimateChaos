@@ -58,15 +58,6 @@ local function ReAnim()
     	settings().Physics.AllowSleep = false
 		settings().Physics.PhysicsEnvironmentalThrottle = Enum.EnviromentalPhysicsThrottle.Disabled
 	end)
-	for i, v in pairs(plr.Character:GetChildren()) do
-		print(v.Name)
-        if v:IsA("Accessory") then
-			print("Found accessory: "..v.Name)
-			v.Handle:BreakJoints()
-            local Attachment = v.Handle:FindFirstChildOfClass("Attachment")
-            CreateFakeHat(v)
-        end
-    end
     replicatesignal(plr.ConnectDiedSignalBackend)
     task.wait(game.Players.RespawnTime + 0.1)
 	local Gyro = Instance.new("BodyGyro", plr.Character.HumanoidRootPart)
@@ -84,6 +75,15 @@ local function ReAnim()
 	FakeHRP.CFrame = HRPCF
 	FakeHRP.Massless = true
 	FakeHRP.BodyGyro:Destroy()
+	for i, v in pairs(plr.Character:GetChildren()) do
+		print(v.Name)
+        if v:IsA("Accessory") then
+			print("Found accessory: "..v.Name)
+			v.Handle:BreakJoints()
+            local Attachment = v.Handle:FindFirstChildOfClass("Attachment")
+            CreateFakeHat(v)
+        end
+    end
 	FakePlr = game:GetService("Players"):CreateHumanoidModelFromDescription(game:GetService("Players"):GetHumanoidDescriptionFromUserId(game:GetService("Players").LocalPlayer.UserId),Enum.HumanoidRigType.R6)
 	for i,v in pairs(FakePlr:GetChildren()) do
 		if v:IsA("Accessory") then
