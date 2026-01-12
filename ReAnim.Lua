@@ -1,7 +1,7 @@
 local rs = game:GetService("RunService")
 local plr = game.Players.LocalPlayer
 
-local HRPCF = CFrame.new(0, 75, 0)
+local HRPCF = CFrame.new(0, 100, 0)
 local FakeHRP = nil
 
 local function CreateAlign(Part1, Part2) 
@@ -58,6 +58,15 @@ local function ReAnim()
     	settings().Physics.AllowSleep = false
 		settings().Physics.PhysicsEnvironmentalThrottle = Enum.EnviromentalPhysicsThrottle.Disabled
 	end)
+	for i, v in pairs(plr.Character:GetChildren()) do
+		print(v.Name)
+        if v:IsA("Accessory") then
+			print("Found accessory: "..v.Name)
+			v.Handle:BreakJoints()
+            local Attachment = v.Handle:FindFirstChildOfClass("Attachment")
+            CreateFakeHat(v)
+        end
+    end
     replicatesignal(plr.ConnectDiedSignalBackend)
     task.wait(game.Players.RespawnTime + 0.1)
 	local Gyro = Instance.new("BodyGyro", plr.Character.HumanoidRootPart)
@@ -66,7 +75,7 @@ local function ReAnim()
 	Gyro.P = 90000
 	Gyro.MaxTorque = Vector3.new(400000, 400000, 400000)
     plr.Character.Humanoid:ChangeState(Enum.HumanoidStateType.Physics)
-	plr.Character.HumanoidRootPart.CFrame = CFrame.new(0, 75, 0)
+	plr.Character.HumanoidRootPart.CFrame = CFrame.new(0, 0, 0)
     wait(0.1)
 	FakeHRP = plr.Character.HumanoidRootPart:Clone()
 	FakeHRP.Name = "FakeHRP"
@@ -105,19 +114,7 @@ local function ReAnim()
     --game.Workspace.CurrentCamera.CameraType = Enum.CameraType.Scriptable
 	game.Workspace.CurrentCamera.CameraSubject = plr.Character.Humanoid
     game.Workspace.CurrentCamera.CFrame = CFrame.new(0, 100, -50)
-    for i, v in pairs(plr.Character:GetChildren()) do
-		print(v.Name)
-        if v:IsA("Accessory") then
-			v.Handle.CanCollide = true
-			print("Found accessory: "..v.Name)
-			v.Handle:BreakJoints()
-            local Attachment = v.Handle:FindFirstChildOfClass("Attachment")
-            CreateFakeHat(v)
-        end
-    end
 	FakeHRP.Name = "HumanoidRootPart"
 end
 
 ReAnim()
-
-
