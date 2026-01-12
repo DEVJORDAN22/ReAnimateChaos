@@ -81,7 +81,7 @@ local function ReAnim()
 			print("Found accessory: "..v.Name)
 			v.Handle:BreakJoints()
 			v.Handle.AssemblyLinearVelocity = Vector3.new(plr.Character.Torso.AssemblyLinearVelocity.X*15 -(10*math.cos(os.clock()*1000))   , 28.5312+math.sin(os.clock()*1000), plr.Character.Torso.AssemblyLinearVelocity.Z*15+(3*math.sin(os.clock()*12000))) 
-			v.Handle.AssemblyAngularVelocity = Vector3.new(0, sin(clock()*10), 0) + plr.Character.Torso.AssemblyAngularVelocity * 2
+			v.Handle.AssemblyAngularVelocity = Vector3.new(0, math.sin(os.clock()*10), 0) + plr.Character.Torso.AssemblyAngularVelocity * 2
 			v.Handle.CanCollide = false
             local Attachment = v.Handle:FindFirstChildOfClass("Attachment")
             CreateFakeHat(v)
@@ -121,4 +121,3 @@ local function ReAnim()
 end
 
 ReAnim()
-
