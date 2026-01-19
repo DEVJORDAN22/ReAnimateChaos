@@ -107,11 +107,6 @@ local function ReAnim()
         end
     end
 	FakeHRP.Name = "HumanoidRootPart"
-	RS.Stepped:Connect(function()
-		if plr.Character and plr.Character:FindFirstChild("HumanoidRootPart") then
-			v.Handle.AssemblyLinearVelocity = Vector3.new(plr.Character.Torso.AssemblyLinearVelocity.X*15 -(10*math.cos(os.clock()*1000))   , 28.5312+math.sin(os.clock()*1000), plr.Character.Torso.AssemblyLinearVelocity.Z*15+(3*math.sin(os.clock()*12000)))
-		end
-	end)
 end
 
 ReAnim()
