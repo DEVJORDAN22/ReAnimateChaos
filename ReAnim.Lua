@@ -7,6 +7,10 @@ local RS = game:GetService("RunService")
 
 local SafeYAxis = 35
 
+local function IsNetworkOwner(Part)  -- <BasePart> : Boolean
+	return Part and Part.ReceiveAge == 0
+end
+
 local function CreateAlign(Part1, Part2, Offset) 
 	if Part1 and Part2 then
 		if Part1.Parent and Part2.Parent then
