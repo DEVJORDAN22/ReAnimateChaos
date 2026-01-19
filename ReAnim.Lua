@@ -61,17 +61,6 @@ local function ReAnim()
 	FakeHRP.CFrame = HRPCF
 	FakeHRP.Massless = true
 	FakeHRP.BodyGyro:Destroy()
-	for i, v in pairs(plr.Character:GetChildren()) do
-		print(v.Name)
-        if v:IsA("Accessory") then
-			print("Found accessory: "..v.Name)
-			v.Handle:BreakJoints()
-			v.Handle.AssemblyLinearVelocity = Vector3.new(plr.Character.Torso.AssemblyLinearVelocity.X*15 -(10*math.cos(os.clock()*1000))   , 28.5312+math.sin(os.clock()*1000), plr.Character.Torso.AssemblyLinearVelocity.Z*15+(3*math.sin(os.clock()*12000))) 
-			v.Handle.CanCollide = false
-            local Attachment = v.Handle:FindFirstChildOfClass("Attachment")
-            CreateFakeHat(v)
-        end
-    end
 	FakePlr = game:GetService("Players"):CreateHumanoidModelFromDescription(game:GetService("Players"):GetHumanoidDescriptionFromUserId(game:GetService("Players").LocalPlayer.UserId),Enum.HumanoidRigType.R6)
 	for i,v in pairs(FakePlr:GetChildren()) do
 		if v:IsA("Accessory") then
@@ -102,6 +91,17 @@ local function ReAnim()
     --game.Workspace.CurrentCamera.CameraType = Enum.CameraType.Scriptable
 	game.Workspace.CurrentCamera.CameraSubject = plr.Character.Humanoid
     game.Workspace.CurrentCamera.CFrame = CFrame.new(0, 100, -50)
+		for i, v in pairs(plr.Character:GetChildren()) do
+		print(v.Name)
+        if v:IsA("Accessory") then
+			print("Found accessory: "..v.Name)
+			v.Handle:BreakJoints()
+			v.Handle.AssemblyLinearVelocity = Vector3.new(plr.Character.Torso.AssemblyLinearVelocity.X*15 -(10*math.cos(os.clock()*1000))   , 28.5312+math.sin(os.clock()*1000), plr.Character.Torso.AssemblyLinearVelocity.Z*15+(3*math.sin(os.clock()*12000))) 
+			v.Handle.CanCollide = false
+            local Attachment = v.Handle:FindFirstChildOfClass("Attachment")
+            CreateFakeHat(v)
+        end
+    end
 	FakeHRP.Name = "HumanoidRootPart"
 	RS.Stepped:Connect(function()
 		if plr.Character and plr.Character:FindFirstChild("HumanoidRootPart") then
