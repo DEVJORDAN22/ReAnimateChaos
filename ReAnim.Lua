@@ -40,7 +40,7 @@ local function CreateFakeHat(Hat)
 	FakeHat.Handle.CanCollide = false
 	FakeHat.Handle.Anchored = true
 	FakeHat.Handle.CFrame = HRPCF
-	CreateAlign(Hat:FindFirstChild("Handle"), FakeHat:FindFirstChild("Handle"))
+	CreateAlign(Hat:WaitForChild("Handle"), FakeHat:WaitForChild("Handle"))
 end
 
 local function ReAnim()
