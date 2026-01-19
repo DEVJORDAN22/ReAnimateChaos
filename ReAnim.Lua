@@ -5,42 +5,27 @@ local HRPCF = CFrame.new(0, 100, 0)
 local FakeHRP = nil
 local RS = game:GetService("RunService")
 
-local function CreateAlign(Part1, Part2) 
-	local A0 = nil
-	local A1 = nil
-	if Part1:FindFirstChildOfClass("Attachment") then
-		A0 = Part1:FindFirstChildOfClass("Attachment")
+local SafeYAxis = 35
+
+local function CreateAlign(Part1, Part2, Offset) 
+	if Part1 and Part2 then
+		if Part1.Parent and Part2.Parent then
+			if IsNetworkOwner(Part1) then
+				local Part2Magnitude = Part2.Size.Magnitude
+				local Part2Velocity = Part2.AssemblyLinearVelocity * Part2Magnitude
+				local CalculatedVel = Part2Velocity * 2.5
+
+				local ClampedAxisY = math.clamp(Part2Velocity.Y, SafeYAxis, 512)
+				local Velocity = Vector3.new(CalculatedVel.X, ClampedAxisY, CalculatedVel.Z)
+
+				local CFrameOffset = Part2.CFrame * Offset
+
+				Part1.AssemblyLinearVelocity = Velocity
+				Part1.AssemblyAngularVelocity = Part2.AssemblyAngularVelocity
+				Part1.CFrame = CFrameOffset + ReverseSleep
+			end
+		end
 	end
-
-	if Part2:FindFirstChildOfClass("Attachment") then
-		A1 = Part2:FindFirstChildOfClass("Attachment")
-	end
-
-	local AlignPosition = Instance.new("AlignPosition")
-	AlignPosition.Parent = Part1
-	local AlignOrientation = Instance.new("AlignOrientation")
-	AlignOrientation.Parent = Part1
-
-	AlignPosition.Attachment0 = A0
-	AlignPosition.Attachment1 = A1
-	AlignOrientation.Attachment0 = A0
-	AlignOrientation.Attachment1 = A1
-
-	AlignPosition.RigidityEnabled = false
-	AlignPosition.ApplyAtCenterOfMass = false
-	AlignPosition.MaxForce = math.huge
-	AlignPosition.MaxVelocity = math.huge
-	AlignPosition.ReactionForceEnabled = false
-	AlignPosition.Responsiveness = 200
-
-	AlignOrientation.MaxTorque = math.huge
-	AlignOrientation.MaxAngularVelocity = math.huge
-	AlignOrientation.PrimaryAxisOnly = false
-	AlignOrientation.ReactionTorqueEnabled = false
-	AlignOrientation.Responsiveness = 200
-	AlignOrientation.RigidityEnabled = false
-
-	Part2.Transparency = 0.8 -- So you can see the fake hats relative to the real ones incase they fall and etc
 end
 
 local function CreateFakeHat(Hat)
